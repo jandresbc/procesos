@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2018-10-15 19:14:09
+Date: 2018-10-15 19:24:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,15 +30,11 @@ CREATE TABLE `procesos` (
   PRIMARY KEY (`id_proceso`),
   KEY `id_usuario` (`id_usuario`) USING BTREE,
   CONSTRAINT `procesos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of procesos
 -- ----------------------------
-INSERT INTO `procesos` VALUES ('10', '00000010', 'Proceso nuevo', '2018-10-15', 'Bogotá DC.', '34500.24', null);
-INSERT INTO `procesos` VALUES ('11', '00000011', 'Nevo proceso con usuario', '2018-10-15', 'Bogotá DC.', '234.34', '1');
-INSERT INTO `procesos` VALUES ('12', '00000001', 'Nuevo proceso usuario 2', '2018-10-15', 'Bogotá DC.', '34500.34', '7');
-INSERT INTO `procesos` VALUES ('13', '00000002', 'Otro proeso user 2', '2018-10-15', 'Mexico', '25600.23', '7');
 
 -- ----------------------------
 -- Table structure for usuarios
