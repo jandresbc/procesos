@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Usuarios" table="usuarios">
+    <id name="idUsuario" type="integer" column="id_usuario">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombreCompleto" type="string" column="nombre_completo" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="identificacion" type="float" column="identificacion" precision="40" scale="0" nullable="false"/>
+    <field name="contrasena" type="string" column="contrasena" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="activo" type="integer" column="activo" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">1= Activo, 0=Inactivo</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="auth" type="integer" column="auth" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">1=Autenticado, 0= No Autenticado</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

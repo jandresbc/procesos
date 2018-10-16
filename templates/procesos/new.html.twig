@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Proceso{% endblock %}
+
+{% block body %}
+    <h1>Crear Proceso # {{ nroProceso }}</h1>
+
+    {{ include('procesos/_form.html.twig') }}
+
+    <div class="text-left">
+        <a class="btn btn-sm btn-info" href="{{ path('procesos_index') }}">Volver</a>
+    </div>
+{% endblock %}

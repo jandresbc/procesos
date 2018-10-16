@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Procesos{% endblock %}
+
+{% block body %}
+    <h1 class="mx-auto">Lista de Procesos</h1>
+
+    <div class="text-left">
+		<span style="font-size:18px;" class="text-success">¡Bienvenido! {{ app.session.get("nombreUsuario") }}</span> |
+		<a href="{{ path('logout',{usuario:app.session.get('identificacion')}) }}">Cerrar Sesión</a><br>
+		<a class="btn-sm btn btn-info m-3" href="{{ path('procesos_new') }}">Crear Proceso</a>
+	</div>
+	
+	<div class="text-left row mb-2" id="filtros">
+		<div class="col-md-2"><h6 class="mr-3">Filtros de búsqueda</h6></div>
+		<div class="col-md-7">
+			{{ form_start(filtros) }}
+			<div class="row d-inline-block">
+				<div class="col-md-12">{{ form_widget(filtros.nroProceso) }}</div>
+			</div>
+			<div class="row d-inline-block">
+				<div class="col-md-12">{{ form_widget(filtros.fechaCreacion) }}</div>
+			</div>
+			<div class="row d-inline-block">
+				<div class="col-md-12">{{ form_widget(filtros.sede) }}</div>
+			</div>
+			<div class="row d-inline-block">
+				<div class="col-md-12">
+				<button type="submit" class="btn btn-info btn-sm"><li class="fa fa-filter"></li></button>
+				</div>
+			</div>
+			{{ form_end(filtros) }}
+		</div>
+		
+	</div>
+    <div class="table-responsive mx-auto">
+	    <table class="table table-sm table-striped">
+		<thead>
+		    <tr>
+		        <th>Item</th>
+		        <th>Nro. Proceso</th>
+		        <th>Descripción</th>
+		        <th>Fecha Creación</th>
+		        <th>Sede</th>
+		        <th>Presupuesto $ COP</th>
+				<th>Presupuesto $ USD</th>
+		        <th>Acciones</th>
+		    </tr>
+		</thead>
+		<tbody>
+		{% for key,proceso in procesos %}
+		    <tr>
+		        <td>{{ key + 1 }}</td>
+		        <td>{{ proceso.nroProceso }}</td>
+		        <td>{{ proceso.descripcion }}</td>
+		        <td>{{ proceso.fechaCreacion ? proceso.fechaCreacion|date('Y-m-d') : '' }}</td>
+		        <td>{{ proceso.sede }}</td>
+		        <td>{{ proceso.presupuesto|number_format(2,".",",") }}</td>
+				<td>{{ (proceso.presupuesto/3000)|number_format(2,",",".") }}</td>
+		        <td>
+		            <a class="fa fa-eye text-warning" href="{{ path('procesos_show', {'idProceso': proceso.idProceso}) }}"></a>
+		            <a class="fa fa-edit text-warning" href="{{ path('procesos_edit', {'idProceso': proceso.idProceso}) }}"></a>
+		        </td>
+		    </tr>
+		{% else %}
+		    <tr>
+		        <td colspan="7" class="bg-warning text-center text-white">Sin Registros</td>
+		    </tr>
+		{% endfor %}
+		</tbody>
+	    </table>
+    </div>
+{% endblock %}

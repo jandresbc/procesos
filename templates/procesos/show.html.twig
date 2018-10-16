@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Procesos{% endblock %}
+
+{% block body %}
+    <h1>Procesos Nro. {{ proceso.nroProceso }}</h1>
+
+    <div class="row">
+        <table class="mx-auto table table-sm table-striped table-bordered w-50">
+            <tbody>
+                <tr>
+                    <th>Nro. Proceso</th>
+                    <td>{{ proceso.nroProceso }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha Creación</th>
+                    <td>{{ proceso.fechaCreacion ? proceso.fechaCreacion|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td>{{ proceso.descripcion }}</td>
+                </tr>
+                <tr>
+                    <th>Sede</th>
+                    <td>{{ proceso.sede }}</td>
+                </tr>
+                <tr>
+                    <th>Presupuesto</th>
+                    <td>{{ proceso.presupuesto }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-sm btn-info m-2" href="{{ path('procesos_index') }}">Volver</a>
+
+    <a class="btn btn-sm btn-warning text-white m-2" href="{{ path('procesos_edit', {'idProceso': proceso.idProceso}) }}">Editar</a>
+
+    {# include('procesos/_delete_form.html.twig') #}
+{% endblock %}
